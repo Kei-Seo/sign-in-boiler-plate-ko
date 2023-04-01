@@ -3,14 +3,14 @@ const app = express()
 const port = 3000
 const bodyParser = require('body-parser');
 const { User } = require('./models/User'); 
-
+const config = require('./config/key')
 //application/w-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: true}));
 //application/json
 app.use(bodyParser.json());
 
 const mongoose = require('mongoose')
-mongoose.connect('mongodb+srv://kei:1p2p3p4p@boilerplate.fgyxeqg.mongodb.net/?retryWrites=true', {
+mongoose.connect(config.mongoURI, {
     useNewUrlParser: true, useUnifiedTopology: true 
 }).then(() => console.log('MongoDB Connected...'))
     .catch(err => console.log(err))
